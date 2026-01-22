@@ -1,0 +1,1622 @@
+:: Computer Cleanup Software 2024
+:: version 2.5.3.0
+:: Date: 1/28/2017
+:: Modified: 10/15/2024
+:: Disable Windows Defender on Win 10
+:: Remove Windows 10/11 UAC Re-enable Reboot 
+:: shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+:: Redirect Successfull Installation Landing Page to Reason Electronics
+:: Added Firefox 52.9.0esr-32B-Vista.exe to XP Install
+:: Deprecated Java Run Time Error 32 & 64
+:: Deprecated Immunet protect-latest32 & protect-latest64
+
+@Echo Off
+
+IF Exist "%programfiles(x86)%" goto Register64 ELSE Register86
+
+:Register86
+md "%programfiles%\Computer Cleanup Software"
+md "%allusersprofile%\Start Menu\Programs\Computer Cleanup Software"
+copy register.exe "%programfiles%\Computer Cleanup Software\"
+copy destroy.exe "%programfiles%\Computer Cleanup Software\"
+copy remake.exe "%programfiles%\Computer Cleanup Software\"
+copy transfer.exe "%programfiles%\Computer Cleanup Software\"
+copy Ekc3220.dll "%programfiles%\Computer Cleanup Software\"
+copy Ekag20nt.exe "%programfiles%\Computer Cleanup Software\"
+copy uninstall.exe "%programfiles%\Computer Cleanup Software\"
+copy uninstaller.bat "%programfiles%\Computer Cleanup Software\"
+copy update.exe "%programfiles%\Computer Cleanup Software\"
+copy updshl10.exe "%programfiles%\Computer Cleanup Software\"
+copy Updshlc.xml "%programfiles%\Computer Cleanup Software\"
+copy gnu_gpl.txt "%programfiles%\Computer Cleanup Software\"
+copy GPL_license.txt "%programfiles%\Computer Cleanup Software\"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Register.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\register.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Remake.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\remake.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Transfer.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\transfer.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Destroy.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\destroy.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Register.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\register.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Destroy.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\destroy.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Remake.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\remake.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Transfer.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\transfer.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Update.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\update.exe"
+Shortcut.exe /f:"%allusersprofile%\Start Menu\Programs\Computer Cleanup Software\Uninstall.lnk" /a:c  /t:"%programfiles%\Computer Cleanup Software\uninstall.exe"
+
+goto RegisterEnd
+
+:Register64
+md "%programfiles(x86)%\Computer Cleanup Software"
+md "%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software"
+copy register.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy destroy.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy remake.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy transfer.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy register.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy Ekc3220.dll "%programfiles(x86)%\Computer Cleanup Software\"
+copy Ekag20nt.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy uninstall.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy uninstaller.bat "%programfiles(x86)%\Computer Cleanup Software\"
+copy update.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy updshl10.exe "%programfiles(x86)%\Computer Cleanup Software\"
+copy Updshlc.xml "%programfiles(x86)%\Computer Cleanup Software\"
+copy gnu_gpl.txt "%programfiles(x86)%\Computer Cleanup Software\"
+copy GPL_license.txt "%programfiles(x86)%\Computer Cleanup Software\"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Register.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\register.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Remake.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\remake.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Transfer.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\transfer.exe"
+Shortcut.exe /f:"%USERPROFILE%\Desktop\Destroy.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\destroy.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Register.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\register.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Destroy.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\destroy.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Remake.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\remake.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Transfer.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\transfer.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Update.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\update.exe"
+Shortcut.exe /f:"%allusersprofile%\Microsoft\Windows\Start Menu\Programs\Computer Cleanup Software\Uninstall.lnk" /a:c  /t:"%programfiles(x86)%\Computer Cleanup Software\uninstall.exe"
+goto RegisterEnd
+
+:RegisterEnd
+
+@Echo Off
+
+::Windows XP
+ver | findstr /i "5\.1\." > nul
+IF %ERRORLEVEL% EQU 0 goto WinXP
+
+::Windows 10
+ver | findstr /i "10\.0\." > nul
+IF %ERRORLEVEL% EQU 0 goto Win10
+
+:CheckOS
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64-Bit) ELSE (GOTO 32-Bit)
+
+:WinXP 
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript End
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+
+:JobsXP
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript End
+
+@Echo Off
+::VBScript
+cscript sysmsg_5.vbs
+::VBScript End
+
+::Install Microsoft Security Essentials Virus Protection
+MSEInstall-x86-XP.exe /s /runwgacheck
+
+::VBScript
+cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+im
+::BleachBit
+::Bleachbit Browser Cleanup Setup for Windows XP 32bit OS.
+@ECHO OFF
+
+ECHO Windows XP 32-Bit O/S detected
+@Echo Off
+md "c:\program files\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+ChromeStandaloneSetupXP /silent /install
+:GoogleChromeEnd
+
+:FireFoxSetupXP
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxSetupXPEnd) ELSE (GOTO FireFoxXPSetupBegin)
+:FireFoxXPSetupBegin
+::Install Mozilla FireFox for All Users
+"Firefox Setup 52.9.0esr-32B-Vista.exe" /s
+:FireFoxSetupXPEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+::TDSSkiller Rootkit Scan
+tdsskiller.exe -silent -accepteula -accepteulaksn -dcexact -l report.txt
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO MSSEScan Else GOTO SignatureUpdates
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates
+"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -SignatureUpdate
+
+@Echo Off
+::Antivirus Quick Scan
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:MSSEScan
+"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -Scan -Scantype 1
+
+::Bleachbit Performance Cleaner
+::Clean Browser Cookies, Cache, Temp files
+
+::VBScript
+cscript sysmsg_9.vbs
+::VBScript End
+
+ECHO 32-Bit O/S detected
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO SuccessPageEnd Else GOTO SuccessPage
+
+:SuccessPage
+start firefox.exe https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q /f /s %TEMP%\*
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+:EndXP
+
+GOTO END
+
+:32-Bit
+
+@echo off
+call :Resume32
+goto %current%
+goto :eof
+
+:RegAdd32
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript End
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+
+echo Jobs32 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+::Windows UAC - Disable (Windows Vista/7/8)
+Echo Off - Automatically Disable Windows Vista, Windows 7 and Windows 8 UAC.
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+
+::WinDefend Stop Boot Time
+sc config WinDefend start= disabled
+
+::WinDefend Service Stopped 
+net stop WinDefend
+
+::WinDefend Service Disabled
+reg ADD "HKLM\SYSTEM\CurrentControlSet\services\WinDefend" /v Start /t REG_DWORD /d 4 /f
+
+ver | findstr /i "6\.0\." > nul
+IF %ERRORLEVEL% EQU 0 goto Vista32RegDelWinDefend
+
+else goto End32
+
+:Vista32RegDelWinDefend
+::WinDefend Registry Delete on Startup (Vista)
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f 
+
+goto END32
+
+:Jobs32
+::Echo Preparing System for Repair....
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+@Echo Off
+::VBScript
+cscript sysmsg_5.vbs
+::VBScript End
+
+::Install Microsoft Security Essentials Virus Protection
+::MSEInstall-x86.exe /s /runwgacheck
+
+::VBScript
+cscript sysmsg_7_1.vbs
+::VBScript End
+
+:: MSSE Definition Update
+::mpam-fe.exe /s
+mpam-fe_defend.exe /s
+
+::Kill MSSE
+taskkill.exe /im msseces.exe
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest32.exe /S
+
+::BleachBit
+::Bleachbit Browser Cleanup Setup for Windows 32 Bit OS.
+@ECHO OFF
+
+ECHO Windows 32-Bit O/S detected
+@Echo Off
+md "c:\program files\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users 
+ChromeStandaloneSetupXP.exe /silent /install
+:GoogleChromeEnd
+
+::Security Update for Windows 7 Begin
+Windows6.1-KB3033929-x86.msi /quiet /passive /qn
+::Security Update for Windows 7 End
+
+
+::FireFox
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxEnd) ELSE (GOTO FireFoxSetup)
+
+:FireFoxSetup
+::Install FireFox
+"Firefox Setup 52.9.0esr-32B-Vista.exe" /s
+:FireFoxEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+::TDSSkiller Rootkit Scan
+tdsskiller.exe -silent -accepteula -accepteulaksn -dcexact -l report.txt
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO MSSEScan32 Else GOTO SignatureUpdates32
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates32
+::"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:MSSEScan32
+::Virus Quick Scan
+::"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -Scan -Scantype 1
+
+::VBScript
+cscript sysmsg_9.vbs
+::VBScript End
+
+::Bleachbit Job
+::Clean Browser Cookies, Cache, Temp files
+ECHO 32-Bit O/S detected
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+::Java32
+::jre-windows-i586.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel32 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel32
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO SuccessPageEnd Else GOTO SuccessPage
+
+:SuccessPage
+start firefox.exe https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+
+ goto :eof
+
+:Resume32
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd32
+)
+
+:End32
+
+GOTO END
+
+:64-Bit
+
+@echo off
+call :Resume64
+goto %current%
+goto :eof
+
+:RegAdd64
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+
+echo Jobs64 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+::Windows UAC - Disable (Windows Vista/7/8)
+Echo Off - Automatically Disable Windows Vista, Windows 7 and Windows 8 UAC.
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+
+::WinDefend Stop Boot Time
+sc config WinDefend start= disabled
+
+::WinDefend Service Stopped 
+net stop WinDefend
+
+::WinDefend Service Disabled
+reg ADD "HKLM\SYSTEM\CurrentControlSet\services\WinDefend" /v Start /t REG_DWORD /d 4 /f
+
+ver | findstr /i "6\.0\." > nul
+IF %ERRORLEVEL% EQU 0 goto Vista64RegDelWinDefend
+
+else goto End64
+
+:Vista64RegDelWinDefend
+REM WinDefend Registry Delete on Startup (Vista)
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f 
+
+goto END64
+
+:Jobs64
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+@Echo Off
+::VBScript
+cscript sysmsg_5.vbs
+::VBScript End
+
+::Install Microsoft Security Essentials Virus Protection
+::MSEInstall-x64.exe /s /runwgacheck
+
+::VBScript
+cscript sysmsg_7_1.vbs
+::VBScript End
+
+:: MSSE Definition Update
+::mpam-fe-x64.exe /s
+mpam-fe_defend64.exe /s
+
+
+::Kill MSSE
+taskkill.exe /im msseces.exe
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest64.exe /S
+
+::BleachBit
+::Bleachbit 64-Bit Browser Cleanup Setup for Windows OS.
+
+ECHO 64-Bit O/S detected
+@Echo Off
+md "c:\program files (x86)\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files (x86)"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES(X86)%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+GoogleChromeStandaloneEnterprise64.msi /quiet /passive /qn
+:GoogleChromeEnd
+
+::Security Update for Windows 7 x64 Begin
+Windows6.1-KB3033929-x64 /quiet /passive /qn
+::Security Update for Windows 7 x64 End
+
+::FireFox
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxEnd) ELSE (GOTO FireFoxSetup)
+
+:FireFoxSetup
+::Install FireFox
+"Firefox Setup 52.9.0esr-64B-Vista" /s
+:FireFoxEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+::TDSSkiller Rootkit Scan
+tdsskiller.exe -silent -accepteula -accepteulaksn -dcexact -l report.txt
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO MSSEScan64 Else GOTO SignatureUpdates64
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates64
+::"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:MSSEScan64
+::AntiVirus Quick Scan
+::"C:\Program Files\Microsoft Security Client\MpCmdRun.exe" -Scan -Scantype 1
+
+ECHO 64-Bit O/S detected
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+:64-Bit
+::jre-windows-x64.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel64 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel64
+::Echo Finalizing Repairs. We're Almost done...
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO SuccessPageEnd Else GOTO SuccessPage
+
+:SuccessPage
+chrome.exe --start-maximized https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+goto :eof
+
+:Resume64
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd64
+)
+
+:End64
+
+GOTO END
+
+:Win8
+IF EXIST "%PROGRAMFILES(X86)%"  (GOTO Win8-64BIT) ELSE (GOTO Win8-32BIT)
+
+:Win8-32BIT
+
+::ECHO (%ostype%) 32-Bit O/S detected
+::ECHO Preparing System for Installation. Please wait...
+
+@echo off
+call :Resume832
+goto %current%
+goto :eof
+
+:RegAdd832
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+
+::Windows UAC - Disable (Windows Vista/7/8)
+Echo Off - Automatically Disable Windows Vista, Windows 7 and Windows 8 UAC.
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+
+echo Jobs832 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+:EndRegAdd832
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:Jobs832
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest32.exe /S
+
+::BleachBit
+::Bleachbit Browser Cleanup for Windows 32Bit OS.
+@ECHO OFF
+
+ECHO Windows 32-Bit O/S detected
+@Echo Off
+md "c:\program files\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+GoogleChromeStandaloneEnterprise.msi /quiet /passive /qn
+:GoogleChromeEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+::TDSSkiller Rootkit Scan
+tdsskiller.exe -silent -accepteula -accepteulaksn -dcexact -l report.txt
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO WinDefendScan832 Else GOTO SignatureUpdates832
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates832
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:WinDefendScan832
+::Windows Defender Virus Scan
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -Scan -Scantype 1
+
+::VBScript
+cscript sysmsg_9.vbs
+::VBScript End
+
+::Bleachbit Job
+::Clean Browser Cookies, Cache, Temp files
+ECHO 32-Bit O/S detected
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+:32-Bit
+::jre-windows-i586.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel832 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel832
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO SuccessPageEnd Else GOTO SuccessPage
+
+:SuccessPage
+chrome.exe --start-maximized https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+goto :eof
+
+:Resume832
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd832
+)
+
+:End832
+
+GOTO END
+
+:Win8-64BIT
+
+@echo off
+call :Resume864
+goto %current%
+goto :eof
+
+:RegAdd864
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+
+::Windows UAC - Disable (Windows Vista/7/8)
+Echo Off - Automatically Disable Windows Vista, Windows 7 and Windows 8 UAC.
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+
+echo Jobs864 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+:EndRegAdd864
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:Jobs864
+::Preparing System for Repair....
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest64.exe /S
+
+::BleachBit
+::Bleachbit 32-Bit Browser Cleanup Setup for Windows OS.
+
+ECHO 64-Bit O/S detected
+@Echo Off
+md "c:\program files (x86)\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files (x86)"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES(X86)%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+GoogleChromeStandaloneEnterprise64.msi /quiet /passive /qn
+:GoogleChromeEnd
+
+::FireFox
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxEnd) ELSE (GOTO FireFoxSetup)
+
+:FireFoxSetup
+::Install FireFox
+"Firefox Setup-x64.exe" /s
+:FireFoxEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+::TDSSkiller Rootkit Scan
+tdsskiller.exe -silent -accepteula -accepteulaksn -dcexact -l report.txt
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO WinDefendScan864 Else GOTO SignatureUpdates864
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates864
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:WinDefendScan864
+::Windows Defender Quick Virus Scan
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -Scan -Scantype 1
+
+ECHO 64-Bit O/S detected
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+:64-Bit
+::jre-windows-x64.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel864 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel864
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO SuccessPageEnd Else GOTO SuccessPage
+
+:SuccessPage
+start chrome.exe --start-maximized https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+goto :eof
+
+:Resume864
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd864
+)
+
+:End864
+
+GOTO END
+
+:Win10
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO Win10-64BIT) ELSE (GOTO Win10-32BIT)
+
+:Win10-32BIT
+
+@echo off
+call :Resume1032
+goto %current%
+goto :eof
+
+:RegAdd1032
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+
+
+echo Jobs1032 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+:EndRegAdd1032
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto END1032
+
+:Jobs1032
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest32.exe /S
+
+::BleachBit
+::Bleachbit Browser Cleanup Setup for Windows XP OS.
+@ECHO OFF
+
+ECHO Windows 10 32-Bit O/S detected
+@Echo Off
+md "c:\program files\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+GoogleChromeStandaloneEnterprise.msi /quiet /passive /qn
+:GoogleChromeEnd
+
+::FireFox
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxEnd) ELSE (GOTO FireFoxSetup)
+
+:FireFoxSetup
+::Install FireFox
+"Firefox Setup-x32.exe" /s
+:FireFoxEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO WinDefendScan1032 Else GOTO SignatureUpdates1032
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates1032
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:WinDefendScan1032
+::Windows Defender Virus Scan
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -Scan -Scantype 1
+
+::VBScript
+cscript sysmsg_9.vbs
+::VBScript End
+
+::Bleachbit Job
+::Clean Browser Cookies, Cache, Temp files
+ECHO 32-Bit O/S detected
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+:32-Bit
+::jre-windows-i586.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel1032 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel1032
+::Finalizing Installation...
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+::Re-enable Windows UAC
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
+:: shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+goto :eof
+
+:Resume1032
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd1032
+)
+
+:End1032
+
+GOTO END
+
+:Win10-64BIT
+::Preparing System for Installation. Please wait...
+::(%OSTYPE%) 64-Bit O/S detected
+
+@echo off
+call :Resume1064
+goto %current%
+goto :eof
+
+:RegAdd1064
+
+::VBScript
+cscript sysmsg_1.vbs
+::VBScript
+
+::Add script to Run key
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Computer Cleanup Software" /t REG_SZ /F /D "%b2eprogramname%"
+Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+
+echo Jobs1064 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section one --
+
+:EndRegAdd1064
+
+Echo Repairing Internet Connection. Please wait...
+netsh int ip reset resetlog.txt
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+::Windows UAC - Disable (Windows Vista/7/8/10)
+::Echo Off - Automatically Disable Windows UAC for Vista, Windows 7, Windows 8 and Windows 10.
+C:\Windows\System32\cmd.exe /k reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+
+goto END1064
+
+:Jobs1064
+::Preparing System for Repair....
+
+::VBScript
+cscript sysmsg_2.vbs
+::VBScript
+
+::VBScript
+::cscript sysmsg_7_2.vbs
+::VBScript End
+
+::Install Immunet (Silent Install)
+::protect-latest64.exe /S
+
+::BleachBit
+::Bleachbit 32-Bit Browser Cleanup Setup for Windows OS.
+
+ECHO 64-Bit O/S detected
+@Echo Off
+md "c:\program files (x86)\Bleachbit"
+7za.exe x BleachBit-portable.zip -aoa -oc:\"program files (x86)"\"Bleachbit"
+
+:GoogleChrome
+IF EXIST "%PROGRAMFILES(X86)%"\Google\Chrome\Application\chrome.exe (GOTO GoogleChromeEnd) ELSE (GOTO GoogleChromeSetup)
+:GoogleChromeSetup
+::Install Google Chrome for All Users
+GoogleChromeStandaloneEnterprise64.msi /quiet /passive /qn
+:GoogleChromeEnd
+
+::FireFox
+IF EXIST "%PROGRAMFILES%\Mozilla Firefox\firefox.exe" (GOTO FireFoxEnd) ELSE (GOTO FireFoxSetup)
+
+:FireFoxSetup
+::Install FireFox
+"Firefox Setup-x64.exe" /s
+:FireFoxEnd
+
+::VBScript
+cscript sysmsg_6.vbs
+::VBScript End
+
+Ping www.google.com -n 1 -w 1000
+if errorlevel 1 GOTO WinDefendScan1064 Else GOTO SignatureUpdates1064
+
+::VBScript
+cscript sysmsg_7.vbs
+::VBScript End
+
+:SignatureUpates1064
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -SignatureUpdate
+
+::VBScript
+cscript sysmsg_8.vbs
+::VBScript End
+
+:WinDefendScan1064
+::Windows Defender Quick Virus Scan
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -Scan -Scantype 1
+
+ECHO 64-Bit O/S detected
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean internet_explorer.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_chrome.vacuum google_chrome.cache 
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean google_earth.temporary_files
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean firefox.cache firefox.vacuum
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean opera.cache
+"C:\Program Files (x86)\Bleachbit\BleachBit-Portable\bleachbit_console.exe" --clean safari.cache safari.vacuum
+
+IF Exist C:\Windows\System32\wbem\wmic.exe (GOTO WMIC) ELSE (GOTO ENDWMIC)
+
+:WMIC
+
+::VBScript
+cscript sysmsg_11.vbs
+::VBScript End
+
+::Windows Management Instrumentation Command-line
+::Removes various Applications, Toolbars and Software via script.
+@Echo off
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%alexa%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Tool%%bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Bing%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Ask%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Yahoo%%toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%AVG%%Toolbar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Search%%Bar%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet Packs%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Sweet%%IM%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Reg%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Clean%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Registry%%Cleaner%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%PC%%Registry%%Shield%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%DriverUpdate%%'" call uninstall
+echo y | wmic /OUTPUT:STDOUT product where "name like '%%Social%%Privacy%%DNS%%'" call uninstall
+
+::Begin Adobe Flash Player Install
+
+::Install Adobe Flash Player for all Browsers
+
+::IE
+::install_flash_player_ax.exe -install
+
+::FireFox
+::install_flash_player.exe -install
+
+::Chrome
+::install_flash_player_ppapi.exe -install
+
+::END Adobe Flash Player Install
+
+:64-Bit
+::jre-windows-x64.exe /s
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO WMIC64) ELSE (GOTO WMIC32)
+
+:WMIC32
+"C:\Program Files\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:WMIC64
+"C:\Program Files (x86)\PC Health Kit\unins000.exe" /verysilent
+"C:\Program Files (x86)\McAfee Security Scan\uninstall.exe" /S
+
+goto ENDWMIC
+
+:ENDWMIC
+
+echo RegDel1064 >"%USERPROFILE%"\Desktop\current.txt
+echo -- Section two --
+shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+goto :eof
+
+:RegDel1064
+
+::VBScript
+cscript sysmsg_3.vbs
+::VBScript
+
+::Remove script from Run key
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Computer Cleanup Software" /f
+del "%USERPROFILE%"\Desktop\current.txt
+
+::VBScript
+cscript sysmsg_4.vbs
+::VBScript End
+
+::Re-enable Windows UAC
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
+:: shutdown -r -f -t 60 -c "Your PC is Being Rebooted in 60 seconds..."
+
+:SuccessPage
+start chrome.exe --start-maximized https://reasonhosting.com/successful-installation/
+:SuccessPageEnd
+
+del /q/f/s %TEMP%\*
+echo -- Section three --
+goto :eof
+
+:Resume1064
+if exist "%USERPROFILE%"\Desktop\current.txt (
+    set /p current=<"%USERPROFILE%"\Desktop\current.txt
+) else (
+    set current=RegAdd1064
+)
+
+:End1064
+
+goto END
+
+:End
